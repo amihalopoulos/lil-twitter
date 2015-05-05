@@ -50,6 +50,20 @@ $(document).ready(function(){
     })
   })
 
+  $('#trends-container').on('click', '.trend_link', function(event){
+    event.preventDefault();
+    $target = $(event.target);
+
+    $.ajax({
+      url: $target.attr('href'),
+      type: 'get',
+      data: {'keyword': $target[0].dataset.tagname}
+    }).done(function(response){
+      var output = template({header: "Tweets Matching #" + $target[0].dataset.tagname,tweets: response});
+      $('#tweets-container').html(output);
+    })
+  })
+
   var getHashTags = function(text) {
     var slicedTags = [];
     var hashtags = text.match(/\S*#\S+/gi);
