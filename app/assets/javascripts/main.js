@@ -64,6 +64,13 @@ $(document).ready(function(){
     })
   })
 
+  $('#brand').on('click', function(event){
+    $.get('/tweets/recent').then(function(response){
+      var output = template({header: "Recent Tweets", tweets: response});
+      $('#tweets-container').html(output);
+    });
+  })
+
   var getHashTags = function(text) {
     var slicedTags = [];
     var hashtags = text.match(/\S*#\S+/gi);
