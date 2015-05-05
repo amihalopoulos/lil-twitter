@@ -45,6 +45,8 @@ $(document).ready(function(){
     }).done(function(response){
       var output = template({header: "Tweets Matching #"+$searchbox.val(),tweets: response});
       $('#tweets-container').html(output);
+    }).fail(function(){
+      $searchbox.css('border', '2px red solid');
     })
   })
 
