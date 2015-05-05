@@ -17,17 +17,35 @@ $(document).ready(function(){
   $('#tweet-form').on('submit', function(event){
     event.preventDefault();
     $form = $(event.target);
+    $textarea = $('#new-tweet')
+    var hashtags = getHashTags($textarea.val())
+    // debugger
 
     $.ajax({
       url: '/tweets',
       type: 'post',
-      data: $form.serialize()
+      data: {"tweet[content]": $textarea.val(), "hashtags": hashtags}
     }).done(function(response){
       var source3 = $("#single-tweet-template").html();
       var template3 = Handlebars.compile(source3);
       var output3 = template3(response);
       $('#tweets-container ul').prepend(output3);
-      $('#new-tweet').val("");
+      $textarea.val("");
     })
   })
+
+  var getHashTags = function(text) {
+    var slicedTags = [];
+    var hashtags = text.match(/\S*#\S+/gi);
+    if (hashtags !== null){
+      for (var i=0; i<hashtags.length; i++){
+        slicedTags.push(hashtags[i].slice(1))
+      }
+      return slicedTags
+    }
+    else {
+      return []
+    }
+  }
+
 });
