@@ -18,6 +18,15 @@
     </ul>
 </script>
 
+<script id="trending-hashtags-template" type="text/x-handlebars-template">
+  <h3>Trends</h3>
+  <ul>
+    {{#each hashtags}}
+    <li>#{{this}}</li>
+    {{/each}}
+  </ul>
+</script>
+
 <header id="top-nav">
   <div id="brand">Lil' Twitter API</div>
   <form id="search-form">
@@ -34,19 +43,7 @@
     </form>
   </section>
   <section id="trends-container">
-    <h3>Trends</h3>
-    <ul>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-      <li>filler</li>
-    </ul>
+
   </section>
   <section id="tweets-container">
     <h3>Tweets</h3>
