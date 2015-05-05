@@ -3,7 +3,7 @@ $(document).ready(function(){
   var source = $("#tweets-river-template").html();
   var template = Handlebars.compile(source); // template is a function.
   $.get('/tweets/recent').then(function(response){
-      var output = template({tweets: response});
+      var output = template({header: "Recent Tweets", tweets: response});
       $('#tweets-container').html(output);
   });
 
@@ -31,6 +31,20 @@ $(document).ready(function(){
       var output3 = template3(response);
       $('#tweets-container ul').prepend(output3);
       $textarea.val("");
+    })
+  })
+
+  $('#search-form').on('submit', function(event){
+    event.preventDefault();
+    $searchbox = $('#search');
+    // debugger
+    $.ajax({
+      url: '/tweets/search/' + $searchbox.val(),
+      type: 'get',
+      data: {'keyword': $searchbox.val()}
+    }).done(function(response){
+      var output = template({header: "Tweets Matching #"+$searchbox.val(),tweets: response});
+      $('#tweets-container').html(output);
     })
   })
 

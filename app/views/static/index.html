@@ -13,7 +13,7 @@
 </script>
 
 <script id="tweets-river-template" type="text/x-handlebars-template">
-    <h3>Tweets</h3>
+    <h3>{{header}}</h3>
     <ul>
     {{#each tweets}}
         <li class="tweet">
@@ -42,7 +42,7 @@
 
 <header id="top-nav">
   <div id="brand">Lil' Twitter API</div>
-  <form id="search-form">
+  <form id="search-form" >
     <input id="search" type="text" name="query">
   </form>
   <i class="fa fa-search"></i>
