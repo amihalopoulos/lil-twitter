@@ -81,7 +81,7 @@ describe TweetsController do
     end
 
     it "should provide fake attributes if none are given" do
-      post :create, { tweet: { } }
+      post :create, { tweet: { content: 'some fake attribute' } }
       expect(Tweet.last.content).to_not be_nil
       expect(Tweet.last.avatar_url).to_not be_nil
       expect(Tweet.last.handle).to_not be_nil
